@@ -1,0 +1,654 @@
+object fd: Tfd
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 428
+  HorizontalOffset = 356
+  VerticalOffset = 272
+  Width = 688
+  object ZConnection: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    Properties.Strings = (
+      'AutoEncodeStrings=True'
+      'codepage='
+      'controls_cp=CP_UTF8'
+    )
+    TransactIsolationLevel = tiReadCommitted
+    Connected = True
+    HostName = '192.168.1.11'
+    Port = 5432
+    Database = 'prod'
+    User = 'postgres'
+    Password = 'postgres'
+    Protocol = 'postgresql'
+    LibraryLocation = 'C:\prod\lazarus\prgs\prod_ddt\libpq.dll'
+    Left = 56
+    Top = 24
+  end
+  object zq: TZQuery
+    Connection = ZConnection
+    Params = <>
+    Left = 256
+    Top = 16
+  end
+  object dsZq: TDataSource
+    DataSet = zq
+    Left = 304
+    Top = 16
+  end
+  object Tddt: TZQuery
+    Connection = ZConnection
+    BeforePost = TddtBeforePost
+    AfterPost = TddtAfterPost
+    AfterDelete = TddtAfterPost
+    SQL.Strings = (
+      'select * from tddt limit 1'
+    )
+    Params = <>
+    Left = 48
+    Top = 112
+    object Tddtserie: TStringField
+      FieldKind = fkData
+      FieldName = 'serie'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1
+    end
+    object Tddtcod: TLongintField
+      FieldKind = fkData
+      FieldName = 'cod'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object Tddtdata: TDateField
+      FieldKind = fkData
+      FieldName = 'data'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tddtdestcod: TStringField
+      FieldKind = fkData
+      FieldName = 'destcod'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object Tddtdestdes: TStringField
+      FieldKind = fkData
+      FieldName = 'destdes'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtdestind: TStringField
+      FieldKind = fkData
+      FieldName = 'destind'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtdestloc: TStringField
+      FieldKind = fkData
+      FieldName = 'destloc'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtdestnaz: TStringField
+      FieldKind = fkData
+      FieldName = 'destnaz'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object Tddtdestpiva: TStringField
+      FieldKind = fkData
+      FieldName = 'destpiva'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tddtdstnzcod: TStringField
+      FieldKind = fkData
+      FieldName = 'dstnzcod'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object Tddtdstnzdes: TStringField
+      FieldKind = fkData
+      FieldName = 'dstnzdes'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtdstnzind: TStringField
+      FieldKind = fkData
+      FieldName = 'dstnzind'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtdstnzloc: TStringField
+      FieldKind = fkData
+      FieldName = 'dstnzloc'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtdstnznaz: TStringField
+      FieldKind = fkData
+      FieldName = 'dstnznaz'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object Tddtdstnzpiva: TStringField
+      FieldKind = fkData
+      FieldName = 'dstnzpiva'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tddttrasp: TStringField
+      FieldKind = fkData
+      FieldName = 'trasp'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+    object Tddtporto: TStringField
+      FieldKind = fkData
+      FieldName = 'porto'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+    object Tddtcaus: TStringField
+      FieldKind = fkData
+      FieldName = 'caus'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+    object Tddtasp: TStringField
+      FieldKind = fkData
+      FieldName = 'asp'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 255
+    end
+    object Tddtcolli: TLongintField
+      FieldKind = fkData
+      FieldName = 'colli'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tddtvettcod: TStringField
+      FieldKind = fkData
+      FieldName = 'vettcod'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object Tddtvettdes: TStringField
+      FieldKind = fkData
+      FieldName = 'vettdes'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtvettind: TStringField
+      FieldKind = fkData
+      FieldName = 'vettind'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtvettloc: TStringField
+      FieldKind = fkData
+      FieldName = 'vettloc'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object Tddtvettnaz: TStringField
+      FieldKind = fkData
+      FieldName = 'vettnaz'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object Tddtdataini: TDateField
+      FieldKind = fkData
+      FieldName = 'dataini'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tddtnote: TMemoField
+      FieldKind = fkData
+      FieldName = 'note'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      BlobType = ftMemo
+      Transliterate = False
+    end
+    object Tddti1: TLongintField
+      DisplayLabel = 'tipo destinat.'
+      FieldKind = fkData
+      FieldName = 'i1'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tddti2: TLongintField
+      DisplayLabel = 'tipo destinaz.'
+      FieldKind = fkData
+      FieldName = 'i2'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsDdt: TDataSource
+    AutoEdit = False
+    DataSet = Tddt
+    Left = 136
+    Top = 112
+  end
+  object Tpers: TZQuery
+    Connection = ZConnection
+    SQL.Strings = (
+      'select cod,descr,att from pers limit 1'
+    )
+    Params = <>
+    Left = 432
+    Top = 168
+    object Tperscod: TStringField
+      FieldKind = fkData
+      FieldName = 'cod'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 80
+    end
+    object Tpersdescr: TStringField
+      FieldKind = fkData
+      FieldName = 'descr'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object Tpersatt: TLongintField
+      FieldKind = fkData
+      FieldName = 'att'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsPers: TDataSource
+    AutoEdit = False
+    DataSet = Tpers
+    Left = 496
+    Top = 168
+  end
+  object Tdocs: TZQuery
+    Connection = ZConnection
+    SQL.Strings = (
+      'select tipo,cod,r,descr,file as luogo,certif as riserv,d1 as finoal,cat as tipofile from docs limit 1'
+    )
+    Params = <>
+    Left = 432
+    Top = 96
+    object Tdocstipo: TStringField
+      FieldKind = fkData
+      FieldName = 'tipo'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 4
+    end
+    object Tdocscod: TStringField
+      FieldKind = fkData
+      FieldName = 'cod'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 120
+    end
+    object Tdocsr: TLargeintField
+      FieldKind = fkData
+      FieldName = 'r'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object Tdocsriga: TLongintField
+      FieldKind = fkData
+      FieldName = 'riga'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object Tdocsdescr: TStringField
+      FieldKind = fkData
+      FieldName = 'descr'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1020
+    end
+    object Tdocsluogo: TStringField
+      FieldKind = fkData
+      FieldName = 'luogo'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1020
+    end
+    object Tdocsriserv: TLongintField
+      FieldKind = fkData
+      FieldName = 'riserv'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tdocsfinoal: TDateField
+      FieldKind = fkData
+      FieldName = 'finoal'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tdocstipofile: TStringField
+      FieldKind = fkData
+      FieldName = 'tipofile'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+  end
+  object dsDocs: TDataSource
+    AutoEdit = False
+    DataSet = Tdocs
+    Left = 496
+    Top = 104
+  end
+  object Trddt: TZQuery
+    Connection = ZConnection
+    OnCalcFields = TrddtCalcFields
+    SQL.Strings = (
+      'select * '
+      'from rddt '
+      'limit 1'
+    )
+    Params = <>
+    Left = 48
+    Top = 176
+    object Trddtserie: TStringField
+      FieldKind = fkData
+      FieldName = 'serie'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1
+    end
+    object Trddtcod: TLongintField
+      FieldKind = fkData
+      FieldName = 'cod'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object Trddtr: TLongintField
+      FieldKind = fkData
+      FieldName = 'r'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object Trddtriga: TLongintField
+      FieldKind = fkData
+      FieldName = 'riga'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object Trddtart: TStringField
+      FieldKind = fkData
+      FieldName = 'art'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object Trddtdis: TStringField
+      FieldKind = fkData
+      FieldName = 'dis'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object Trddtcomm: TLongintField
+      FieldKind = fkData
+      FieldName = 'comm'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Trddtdes: TMemoField
+      FieldKind = fkData
+      FieldName = 'des'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      BlobType = ftMemo
+      Transliterate = False
+    end
+    object Trddtnote: TMemoField
+      FieldKind = fkData
+      FieldName = 'note'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      BlobType = ftMemo
+      Transliterate = False
+    end
+    object Trddtum: TStringField
+      FieldKind = fkData
+      FieldName = 'um'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Trddtqta: TFloatField
+      FieldKind = fkData
+      FieldName = 'qta'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 8
+    end
+  end
+  object dsRddt: TDataSource
+    AutoEdit = False
+    DataSet = Trddt
+    OnDataChange = dsRddtDataChange
+    Left = 136
+    Top = 176
+  end
+  object zq_agg: TZQuery
+    Connection = ZConnection
+    Params = <>
+    Left = 368
+    Top = 16
+  end
+  object Tcaus: TZQuery
+    Connection = ZConnection
+    SQL.Strings = (
+      'select cod,descr from caus limit 1'
+    )
+    Params = <>
+    Left = 432
+    Top = 232
+    object Tcauscod: TStringField
+      FieldKind = fkData
+      FieldName = 'cod'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 10
+    end
+    object Tcausdescr: TStringField
+      FieldKind = fkData
+      FieldName = 'descr'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+  end
+  object dsCaus: TDataSource
+    AutoEdit = False
+    DataSet = Tcaus
+    Left = 496
+    Top = 240
+  end
+end
