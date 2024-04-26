@@ -203,30 +203,60 @@ object fd: Tfd
       Required = False
       Size = 1
     end
+    object TddtTraspDes: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'TraspDes'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 15
+    end
     object Tddtporto: TStringField
       FieldKind = fkData
       FieldName = 'porto'
-      Index = 16
+      Index = 17
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 1
     end
-    object Tddtcaus: TStringField
-      FieldKind = fkData
-      FieldName = 'caus'
-      Index = 17
+    object TddtDesPorto: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'DesPorto'
+      Index = 18
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 10
     end
+    object Tddtcaus: TStringField
+      FieldKind = fkData
+      FieldName = 'caus'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+    object TddtDesCaus: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'DesCaus'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
     object Tddtasp: TStringField
       FieldKind = fkData
       FieldName = 'asp'
-      Index = 18
+      Index = 21
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -236,7 +266,7 @@ object fd: Tfd
     object Tddtcolli: TLongintField
       FieldKind = fkData
       FieldName = 'colli'
-      Index = 19
+      Index = 22
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -245,7 +275,7 @@ object fd: Tfd
     object Tddtvettcod: TStringField
       FieldKind = fkData
       FieldName = 'vettcod'
-      Index = 20
+      Index = 23
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -255,7 +285,7 @@ object fd: Tfd
     object Tddtvettdes: TStringField
       FieldKind = fkData
       FieldName = 'vettdes'
-      Index = 21
+      Index = 24
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -265,7 +295,7 @@ object fd: Tfd
     object Tddtvettind: TStringField
       FieldKind = fkData
       FieldName = 'vettind'
-      Index = 22
+      Index = 25
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -275,7 +305,7 @@ object fd: Tfd
     object Tddtvettloc: TStringField
       FieldKind = fkData
       FieldName = 'vettloc'
-      Index = 23
+      Index = 26
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -285,7 +315,7 @@ object fd: Tfd
     object Tddtvettnaz: TStringField
       FieldKind = fkData
       FieldName = 'vettnaz'
-      Index = 24
+      Index = 27
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -295,7 +325,7 @@ object fd: Tfd
     object Tddtdataini: TDateField
       FieldKind = fkData
       FieldName = 'dataini'
-      Index = 25
+      Index = 28
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -304,7 +334,7 @@ object fd: Tfd
     object Tddtnote: TMemoField
       FieldKind = fkData
       FieldName = 'note'
-      Index = 26
+      Index = 29
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -316,7 +346,7 @@ object fd: Tfd
       DisplayLabel = 'tipo destinat.'
       FieldKind = fkData
       FieldName = 'i1'
-      Index = 27
+      Index = 30
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -326,11 +356,91 @@ object fd: Tfd
       DisplayLabel = 'tipo destinaz.'
       FieldKind = fkData
       FieldName = 'i2'
-      Index = 28
+      Index = 31
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object Tddts1: TStringField
+      FieldKind = fkData
+      FieldName = 's1'
+      Index = 32
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 255
+    end
+    object Tddts2: TStringField
+      FieldKind = fkData
+      FieldName = 's2'
+      Index = 33
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 255
+    end
+    object Tddts3: TStringField
+      FieldKind = fkData
+      FieldName = 's3'
+      Index = 34
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 255
+    end
+    object Tddti3: TLongintField
+      FieldKind = fkData
+      FieldName = 'i3'
+      Index = 35
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Tddtf1: TFloatField
+      FieldKind = fkData
+      FieldName = 'f1'
+      Index = 36
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 8
+    end
+    object Tddtf2: TFloatField
+      FieldKind = fkData
+      FieldName = 'f2'
+      Index = 37
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 8
+    end
+    object Tddtf3: TFloatField
+      FieldKind = fkData
+      FieldName = 'f3'
+      Index = 38
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 8
+    end
+    object Tddtt1: TMemoField
+      FieldKind = fkData
+      FieldName = 't1'
+      Index = 39
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      BlobType = ftMemo
+      Transliterate = False
     end
   end
   object dsDdt: TDataSource

@@ -32,7 +32,10 @@ type
     BnewRiga: TSpeedButton;
     BstDdt: TBCButton;
     dbNavRiga: TDBNavigator;
+    dsRst: TDataSource;
     EcodDstnz: TDBEdit;
+    frDsRst: TfrDBDataSet;
+    frDdt: TfrReport;
     rgTipoDestinat: TDBRadioGroup;
     dbtR: TDBText;
     dbtRiga: TDBText;
@@ -90,9 +93,6 @@ type
     EnazDest: TDBEdit;
     EnazDstnz: TDBEdit;
     Eser: TDBComboBox;
-    frDBDSeff: TfrDBDataSet;
-    frDBDmacc: TfrDBDataSet;
-    frMacc: TfrReport;
     gbDest: TGroupBox;
     gbDstnaz: TGroupBox;
     gbVett: TGroupBox;
@@ -129,32 +129,16 @@ type
     Lserie: TLabel;
     Lvers1: TLabel;
     Enote: TDBMemo;
-    dsElc: TDataSource;
-    dsQcal: TDataSource;
-    dsAlleg: TDataSource;
+    dsSt: TDataSource;
     dsZq: TDataSource;
     dsEl: TDataSource;
-    frDBDataSetTelc: TfrDBDataSet;
-    frDdt: TfrReport;
+    frDsSt: TfrDBDataSet;
     PageControl: TPageControl;
     pTesta: TBCPanel;
     pMan1: TBCPanel;
     pNavTesta: TBCPanel;
     pRiga: TBCPanel;
     pTitMan: TBCPanel;
-    qCalcod: TStringField;
-    qCaldata: TDateField;
-    qCaldessimp: TStringField;
-    qCali2: TLongintField;
-    qCalmacch: TStringField;
-    qCalmacchina: TStringField;
-    qCalmanutenzione: TMemoField;
-    qCalnote: TMemoField;
-    qCalnotes: TMemoField;
-    qCalperiod: TLongintField;
-    qCalreg: TFloatField;
-    qCalscad: TDateField;
-    qCaltipop: TLongintField;
     qDocs: TZQuery;
     qDocscod: TStringField;
     qDocsdescr: TStringField;
@@ -166,94 +150,107 @@ type
     qDocstipofile: TStringField;
     rgTipo: TRadioGroup;
     rgTipoDestinaz: TDBRadioGroup;
+    Telart: TStringField;
+    Telasp: TStringField;
+    Telcaus: TStringField;
     TelcCod: TLongintField;
-    TelcData: TDateField;
-    TelcDes_: TStringField;
-    TelcFatto: TLongintField;
-    TelcForn: TStringField;
-    TelcMaiEffett: TBooleanField;
-    TelcReg: TFloatField;
-    Teldata: TDateField;
-    TelDesMacc: TStringField;
-    TelDesPer: TStringField;
-    Teldessimp: TStringField;
-    Telgaranzia: TStringField;
-    Teli2: TLongintField;
-    Telnotes: TMemoField;
-    Telperiod: TLongintField;
-    Telscad: TDateField;
-    Teltipop: TLongintField;
-    Talleg: TZQuery;
+    Trst: TRxMemoryData;
+    Trstcod: TLongintField;
+    Trstqta: TFloatField;
+    Trstum: TStringField;
+    Tstcaus: TStringField;
+    TstCod: TLongintField;
+    TstData: TDateField;
+    Telcod: TLongintField;
+    Telcod_1: TLongintField;
+    Telcolli: TLongintField;
+    Telcomm: TLongintField;
     StringField1: TStringField;
-    Tallegcod: TStringField;
-    Tallegdescr: TStringField;
-    Tallegfinoal: TDateField;
-    Tallegimm: TBlobField;
-    Tallegluogo: TStringField;
-    Tallegr: TLargeintField;
-    Tallegriserv: TLongintField;
-    Tallegtipo: TStringField;
-    Tallegtipofile: TStringField;
+    Teld1: TDateField;
+    Teld2: TDateField;
+    Teldata: TDateField;
+    Teldataini: TDateField;
+    Teldes: TMemoField;
+    Teldestcod: TStringField;
+    Teldestdes: TStringField;
+    Teldestind: TStringField;
+    Teldestloc: TStringField;
+    Teldestnaz: TStringField;
+    Teldestpiva: TStringField;
+    Teldis: TStringField;
+    Teldstnzcod: TStringField;
+    Teldstnzdes: TStringField;
+    Teldstnzind: TStringField;
+    Teldstnzloc: TStringField;
+    Teldstnznaz: TStringField;
+    Teldstnzpiva: TStringField;
+    Telf1: TFloatField;
+    Telf1_1: TFloatField;
+    Telf2: TFloatField;
+    Telf2_1: TFloatField;
+    Telf3: TFloatField;
+    Telf3_1: TFloatField;
+    Teli1: TLongintField;
+    Teli1_1: TLongintField;
+    Teli2: TLongintField;
+    Teli2_1: TLongintField;
+    Teli3: TLongintField;
+    Teli3_1: TLongintField;
+    Telnote: TMemoField;
+    Telnote_1: TMemoField;
+    Telporto: TStringField;
+    Telprz: TFloatField;
+    Telqta: TFloatField;
+    Telr: TLongintField;
+    Telriga: TLongintField;
+    Tels1: TStringField;
+    Tels1_1: TStringField;
+    Tels2: TStringField;
+    Tels2_1: TStringField;
+    Tels3: TStringField;
+    Tels3_1: TStringField;
+    Telserie: TStringField;
+    Telserie_1: TStringField;
+    Telt1: TMemoField;
+    Telt1_1: TMemoField;
+    Teltrasp: TStringField;
+    Telum: TStringField;
+    Telvettcod: TStringField;
+    Telvettdes: TStringField;
+    Telvettind: TStringField;
+    Telvettloc: TStringField;
+    Telvettnaz: TStringField;
     Timer: TTimer;
-    Telc: TRxMemoryData;
-    TelcCodMacc: TStringField;
-    TelcDataScad: TDateField;
-    TelcDataScadGds: TStringField;
-    Telcdes: TStringField;
-    Telcmacch: TStringField;
-    Telcnote: TMemoField;
-    Telcnotes: TMemoField;
-    Telcnr: TIntegerField;
-    Telcod: TFloatField;
-    Telcperiod: TIntegerField;
-    Telcperiodic: TStringField;
-    Telcscadenza: TStringField;
-    Telctipop: TIntegerField;
-    TelcTitolo: TStringField;
-    Telmacch: TStringField;
+    Tst: TRxMemoryData;
+    TstdestDes: TStringField;
+    TstdestInd: TStringField;
+    TstdestLoc: TStringField;
+    TstdestNaz: TStringField;
+    TstdstnzDes: TStringField;
+    TstdstnzInd: TStringField;
+    TstdstnzLoc: TStringField;
+    TstdstnzNaz: TStringField;
+    Tstnote: TMemoField;
     tsEl: TTabSheet;
     tsGest: TTabSheet;
+    Tstporto: TStringField;
+    Tsttrasp: TStringField;
     zq: TZQuery;
     Tel: TZQuery;
-    qCal: TZQuery;
-    procedure BannAllegClick(Sender: TObject);
     procedure BcancClick(Sender: TObject);
     procedure BcancRigaClick(Sender: TObject);
-    procedure BcercaAllegMaccClick(Sender: TObject);
     procedure BcercaDestClick(Sender: TObject);
     procedure BdesManClick(Sender: TObject);
-    procedure BgoManutClick(Sender: TObject);
     procedure BmodClick(Sender: TObject);
     procedure BmodRigaClick(Sender: TObject);
     procedure BnewClick(Sender: TObject);
     procedure BnewRigaClick(Sender: TObject);
-    procedure BstampaElClick(Sender: TObject);
     procedure BstDdtClick(Sender: TObject);
-    procedure BvisMaccClick(Sender: TObject);
-    procedure BvisEffClick(Sender: TObject);
-    procedure cbSortMaccChange(Sender: TObject);
-    procedure dbgAllCellClick(Column: TColumn);
-    procedure dbgAllKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure dbgAllMaccColExit(Sender: TObject);
-    procedure dbgLavEditingDone(Sender: TObject);
-    procedure dbgMaccCellClick(Column: TColumn);
-    procedure dbgManCellClick(Column: TColumn);
-    procedure dbgManTitleClick(Column: TColumn);
-    procedure dbNavigatorEffClick(Sender: TObject; Button: TDBNavButtonType);
     procedure dbNavClick(Sender: TObject; Button: TDBNavButtonType);
     procedure EartExit(Sender: TObject);
     procedure EartKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure EcausExit(Sender: TObject);
     procedure EcausKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure EccEff_fltKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure EccMaccExit(Sender: TObject);
-    procedure EccMaccKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
-      );
-    procedure EccResFltKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure Ecc_macc_fltKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
     procedure EcodDestExit(Sender: TObject);
     procedure EcodDestKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
       );
@@ -272,13 +269,6 @@ type
     procedure EnoteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure PageControlChange(Sender: TObject);
-    procedure RadioButton1Change(Sender: TObject);
-    procedure rgTipoSelectionChanged(Sender: TObject);
-    procedure TallegAfterPost(DataSet: TDataSet);
-    procedure TelCalcFields(DataSet: TDataSet);
-    procedure TelcCalcFields(DataSet: TDataSet);
-    procedure TelEffCalcFields(DataSet: TDataSet);
-    procedure TelMaccCalcFields(DataSet: TDataSet);
     procedure TimerTimer(Sender: TObject);
   private
 
@@ -426,221 +416,6 @@ begin
     end;
   end;
 end;
-
-procedure setDateScad();
-begin
-  with Fmain do begin
-    case rgTipo.ItemIndex of
-      0:begin //scadute
-        if Eal.Date>0 then
-          if Eal.Date>Now then
-            mess('per elencare scadenze successive alla data odierna selezionare "tipo: prossime"',_info,_icons);
-        Eal.Date:=Now; //fino ad oggi
-        if (Edal.Date=0) or (Eal.Date<Edal.Date)  then
-          Edal.Date:=Now-_prd;
-      end;
-      1:begin //prossime
-        Edal.Date:=Now+1; //da domani
-        if (Eal.Date=0) or (Eal.Date<Edal.Date) then
-          Eal.Date:=Now+_prd;
-      end;
-      2:begin //fatte
-        Eal.Date:=Now;
-        if (Edal.Date=0) or (Edal.Date>Eal.Date) then
-          Edal.Date:=Now-_prd;
-      end;
-      3:begin //tutto
-        if Edal.Date=0 then
-          Edal.Date:=Now-_prd;
-        if Eal.Date=0 then
-          Eal.Date:=Now+_prd;
-      end;
-    end;
-  end;
-end;
-
-(* function elenca_manut(stato_: byte): boolean; //0=scaduto 1=prossime 2=eseguito 3=tutto
-var
-  s,des:WideString;
-  oggi,dal,al,cm,dmf:string;
-  dat,dal_,al_:TDate;
-  p:integer;
-  n:longint;
-  found:boolean;
-
-  procedure registra(periodic:string; dataScad:TDate);
-  begin
-    with Fmain do begin
-      //deb('3');
-      case dayOfWeek(dataScad) of
-        1:dataScad:=dataScad+1; //domenica: +1 gg -> lunedì
-        7:dataScad:=dataScad+2; //sabato: +2 gg -> lunedì
-      end;
-      //if (rgTipo.ItemIndex=2) or (dataScad<=Eal.Date) then //2=manut.eff.; al_ then
-        with Fmain do begin
-          Telc.Insert;
-          TelcCodMacc.Value:=qCalMacch.Text;
-          TelcMacch.Value:=qCalMacchina.Text;
-          TelcNotes.Value:=qCalNotes.AsString;
-          TelcTipoP.Value:=qCalTipoP.Value;
-          TelcPeriod.Value:=qCalPeriod.Value; //per sort
-          TelcScadenza.Value:=periodic;
-          TelcDataScad.Value:=dataScad;
-          TelcReg.Value:=qCalReg.Value;
-          TelcData.Value:=qCalData.Value; //data effettuazione
-          TelcFatto.Value:=0;
-          //deb('datascad:'+datetostr(datascad));
-          TelcTitolo.Value:='dal '+fmtData(dal)+' al '+fmtData(al);
-          Telc.Post;
-        end;
-    end;
-  end;
-
-begin
-  with Fmain do begin
-    if Edal.Date=0 then
-      Edal.Date:=Now;
-    setDateScad();
-
-    //ctrl:
-    dal:=Edal.Text;
-    al:=Eal.Text;
-    //dal := fmtData(Edal.Text); //al := fmtData(Eal.Text);
-    dal_:=Edal.Date;
-    al_:=Eal.Date;
-    dmf:=trim(EdesManFlt.Text);
-
-    s:='select m.cod,r.macch,m.des as macchina,m.note,r.dessimp,r.scad,r.notes,';
-    agg(s,'r.cod as reg,r.f1 as rif,r.data,m.note as noteint,''RIP'' as tbl,'); //f1=rif. a manut. pianif.
-    agg(s,'r.tipop,r.period,r.i2');
-    agg(s,'from rip r');
-    agg(s,'right join macch m on r.macch=m.cod');
-    agg(s,'where r.cod>0 and');
-    case rgTipo.ItemIndex of
-      0,1:agg(s,'coalesce(garanzia,'''')=' + qs('x')); //x=manutenzioni previste
-      2:agg(s,condiz_man_eff); //x=manutenzioni effettuate
-    end;
-    if dmf<>'' then begin
-      agg(s,'and (lower(dessimp) like '+qs('%'+lowerCase(dmf)+'%'));
-      agg(s,'or lower(notes) like '+qs('%'+lowerCase(dmf)+'%')+')');
-    end;
-    //agg(s, 'and macch=' + qs('AZ'));
-    if trim(EccResFlt.Text)<>'' then
-      agg(s,'and m.cc='+qs(EccResFlt.Text));
-    if trim(EmaccResFlt.Text)<>'' then
-      agg(s,'and r.macch='+qs(EmaccResFlt.Text));
-    agg(s,'and (tipop<>1 or period<>1)'); //esclude manut. giornaliere perché elencate a dx
-    case rgTipo.ItemIndex of
-      0,1:begin
-        agg(s,'and (scad is null or scad>=to_date(' + qs(dal) + ',' + qs('dd/mm/yyyy') + '))');
-        agg(s,'and (scad is null or scad<=to_date(' + qs(al) + ',' + qs('dd/mm/yyyy') + '))');
-        agg(s,'and (data is null)'); //=non eseguita
-      end;
-      2:begin
-        agg(s,'and (data>=to_date(' + qs(dal) + ',' + qs('dd/mm/yyyy') + '))');
-        agg(s,'and (data<=to_date(' + qs(al) + ',' + qs('dd/mm/yyyy') + '))');
-      end;
-    end;
-    //agg(s,'order by r.macch,r.scad desc'); ordina dopo
-
-    zgo(qCal,s,'op');
-    Telc.Close;
-    Telc.Open;
-    qCal.First;
-    ampiezzaColScad();
-    //deb(i2s(qcal.RecordCount)); deb(s);
-
-    while not qCal.EOF do begin
-      if qCalReg.Text<>'' then begin
-        dat:=Now;
-        //dal_; //in mancanza di manut. eseguite, parte dalla data indicata per il calcolo scadenze
-        cm:=trim(vts(qCal['macch']));
-        if cm='' then
-          cm:='§'; //per avere un cod. non vuoto e lanciare query
-        s:='select cod,data';
-        agg(s,'from rip');
-        agg(s,'where cod>0');
-        //if quale=2 then //per macch.
-        agg(s,'and macch='+qs(cm)); //xMacch));
-        agg(s,'and ' + condiz_man_eff);
-        if rgTipo.ItemIndex<>2 then
-          agg(s,'and f1='+qCalReg.Text); //f1=rif. a manut. pianif.
-        agg(s,'order by data desc');
-        zgo(zq,s,'op');
-        //deb(s); deb(i2s(zq.recordcount));
-        if rgTipo.ItemIndex=2 then
-          registra('',dat)
-        else
-          begin
-
-          if not zq.IsEmpty then begin
-            zq.First;
-            //deb('last:'+vts(zq['data'])+' period:'+qCalPeriod.text);
-            dat:=strToDate(vts(zq['data']));
-            //se presenti manut. fatte, parte da ultima + periodicità
-            p:=qCalPeriod.Value;
-            case qCalTipoP.Value of
-              0:; //scadenza unica
-              1:dat:=dat+qCalPeriod.Value; //gg.
-              2:dat:=dat+7*qCalPeriod.Value; //sett.
-              3:dat:=dat+30*qCalPeriod.Value; //mesi
-              4:dat:=dat+365*qCalPeriod.Value; //anni
-            end;
-            //deb(datetostr(dat));
-          end;
-
-          p:=qCalPeriod.Value;
-          case qCalTipoP.Value of
-            0:begin
-              if (qCalScad.Value>=dal_) and (qCalScad.Value<=al_) then
-                registra('scadenza unica',dat);
-            end;
-            1:begin
-              repeat
-                if dat>=dal_ then
-                  registra(i2s(p)+' giorn'+plur(p,'o','i'),dat);
-                dat:=dat+qCalPeriod.Value;
-              until dat>al_;
-            end;
-            2:begin
-              repeat
-                if (dat>=dal_) and (dat<=al_) then
-                  registra(i2s(p) + ' settiman'+plur(p,'a','e'), dat);
-                dat:=dat+7*qCalPeriod.Value;
-              until dat>al_;
-            end;
-            3:begin
-              repeat
-                if (dat>=dal_) and (dat<=al_) then
-                  registra(i2s(p)+' mes'+plur(p,'e','i'),dat);
-                dat:=dat+30*qCalPeriod.Value;
-              until dat>al_;
-            end;
-            4:begin
-              repeat
-                if (dat>=dal_) and (dat<=al_) then
-                  registra(i2s(p)+' ann'+plur(p,'o','i'),dat);
-                dat:=dat+365*qCalPeriod.Value;
-              until dat>al_;
-            end;
-            else
-              mess('reg.'+qCalReg.Text+' senza periodicità',_info,_icons);
-          end; //case
-          registra('',dat);
-
-        end; //else
-
-      end; //if
-      qCal.Next;
-      //if qcal.eof then deb('eof') else deb('not eof');
-    end; //while
-    //Telc.SortOnFields('macch;DataScad;tipop;period',false,false);
-    Telc.SortOnFields('DataScad;tipop;period;macch',false,false);
-    dgResOld.Repaint;
-  end; //with
-  Result := found;
-end; //elenca_manut *)
-
 
 function sostHtml(h:widestring; dblq:boolean):widestring;
 var
@@ -846,44 +621,6 @@ begin
   cambiaSezione();
 end;
 
-procedure TFmain.RadioButton1Change(Sender: TObject);
-begin
-
-end;
-
-procedure TFmain.rgTipoSelectionChanged(Sender: TObject);
-begin
-  setDateScad();
-  Telc.Close; Telc.Open; //cambiando sezione, azzera precedente resoconto
-  //elencaManutenzioni();
-end;
-
-procedure TFmain.TallegAfterPost(DataSet: TDataSet);
-begin
-  Talleg.ApplyUpdates;
-end;
-
-procedure TFmain.TelCalcFields(DataSet: TDataSet);
-begin
-end;
-
-procedure TFmain.TelcCalcFields(DataSet: TDataSet);
-var
-  dow:integer;
-begin
-  dow:=dayOfWeek(TelcDataScad.Value);
-  TelcDataScadGds.Value:=nomeGiorno(dow)+' '+TelcDataScad.AsString;
-  TelcDes_.Value:=TelcNotes.AsString;
-end;
-
-procedure TFmain.TelEffCalcFields(DataSet: TDataSet);
-begin
-end;
-
-procedure TFmain.TelMaccCalcFields(DataSet: TDataSet);
-begin
-end;
-
 procedure TFmain.TimerTimer(Sender: TObject);
 var
   chkCall:TextFile;
@@ -966,169 +703,78 @@ begin
   caricaRiga();
 end;
 
-procedure TFmain.BstampaElClick(Sender: TObject);
-var
-  s:widestring;
-  des:string;
-  p,n:integer;
-begin
-  s:='select m.cod,r.macch,m.des as macchina,m.note,r.dessimp,r.scad,r.notes,r.i2,'; //,m.impdov';
-  agg(s,'r.tipop,r.period,r.cod as reg,r.data,');
-  agg(s,'case');
-  agg(s,'when r.dessimp is null then r.notes');
-  agg(s,'when r.dessimp='''' then r.notes');
-  agg(s,'else r.dessimp');
-  agg(s,'end as manutenzione');
-  agg(s,'from rip r');
-  agg(s,'right join macch m on r.macch=m.cod');
-  agg(s,'where coalesce(garanzia,'''')='+qs('x')); //x=man.previste
-  agg(s,'order by r.tipop asc,r.period asc,r.macch asc');
-  zgo(qCal,s,'op');
-
-  Telc.Close;
-  Telc.Open;
-  qCal.First; n:=1;
-  while not qCal.Eof do begin
-    Telc.Insert;
-    TelcNr.Value:=n; inc(n);
-    TelcCodMacc.Value:=qCalMacch.Text;
-    TelcMacch.Value:=qCalMacchina.Text; //descr.
-    TelcTipoP.Value:=qCalTipoP.Value;
-    TelcPeriod.Value:=qCalPeriod.Value;
-    //case cbSint.Checked of
-      //true :
-      TelcNotes.Value:=qCalManutenzione.AsString; // DesSimp.AsString;
-      //false:TelcNotes.Value:=qCalNotes.AsString;
-    //end;
-
-    p:=qCalPeriod.Value;
-    case qCalTipoP.Value of
-      0:des:='scadenza unica';
-      1:des:=i2s(p)+' giorn'+plur(p,'o','i');
-      2:des:=i2s(p)+' settiman'+plur(p,'a','e');
-      3:des:=i2s(p)+' mes'+plur(p,'e','i');
-      4:des:=i2s(p)+' ann'+plur(p,'o','i');
-    end; //case
-
-    TelcScadenza.Value:=des;
-    TelcNote.Value:=qCalNote.Value;
-    Telc.Post;
-    qCal.Next;
-  end;
-
-  Telc.SortOnFields('macch;tipop;period;scadenza',false,false);
-  //frDdt.PrepareReport;
-  //frDdt.ShowPreparedReport;
-  frDdt.ShowReport;
-end;
-
 procedure TFmain.BstDdtClick(Sender: TObject);
-begin
-  frDdt.ShowReport;
-end;
-
-procedure visAlleg(tipo:char; cod:string; r:longint);
 var
-  fn,ext:string;
+  x:integer;
+  n:string;
   s:widestring;
-  e:integer;
-  x:byte;
-  ok:boolean;
-  f:file;
 begin
-  with Fmain do begin
-    s:='select cod,r,tipo,descr,file as luogo, imm,certif as riserv,d1 as finoal,cat as tipofile';
-    agg(s,'from docs');
-    agg(s,'where tipo='+qs(tipo)+' and cod='+qs(cod)+' and r='+i2s(r));
-    zgo(Talleg,s,'op');
-    if Talleg.IsEmpty then begin
-      mess('nessun allegato associato',_info,_icons);
-      exit;
-    end;
-    x:=0;
-    repeat
-      try
-        ext:=TallegTipoFile.Text;
-        //if lowercase(ext)='lsx' then ext:='xlsx';
-        fn:=pLoc+'\immagine'+i2s(x)+'.'+ext;
-        ok:=true;
-        if fileExists(fn) then begin
-          {$I-}
-          assignFile(f,fn);
-          erase(f);
-          {$I+}
-          ok:=IOResult=0;
-        end;
-        if ok then begin
-          {$I-}
-          TallegImm.SaveToFile(fn);
-          {$I+}
-          ok:=IOResult=0;
-          if ok then begin
-            e:=ShellExecute(Handle,'open',PChar(fn),nil,nil,SW_HIDE);
-            if not (e in [0,42]) then begin
-              shellErr(e);
-              mess('impossibile visualizzare allegato',_info,_icons);
-            end;
-          end;
-        end;
-      finally
-        inc(x);
-      end;
-    until ok or (x>=99);
-    if not ok then
-      mess('troppi documenti aperti - impossibile visualizzare','attenzione',mb_ok+mb_iconWarning);
+  Tst.Close;
+  Tst.Open;
+  Tst.Insert;
+
+  TstCod.Value     :=fd.TddtCod.Value;
+  TstDestDes.Value :=fd.TddtDestDes.Value;
+  TstDestInd.Value :=fd.TddtDestInd.Value;
+  TstDestLoc.Value :=fd.TddtDestLoc.Value;
+  TstDestNaz.Value :=fd.TddtDestNaz.Value;
+  TstDstnzDes.Value:=fd.TddtDstnzDes.Value;
+  TstDstnzInd.Value:=fd.TddtDstnzInd.Value;
+  TstDstnzLoc.Value:=fd.TddtDstnzLoc.Value;
+  TstDstnzNaz.Value:=fd.TddtDstnzNaz.Value;
+  TstData.Value:=fd.TddtData.Value;
+
+  n:='';
+  case fd.TddtTrasp.Value of
+    'm':n:='mittente';
+    'd':n:='destinatario';
+    'v':n:='vettore';
   end;
-end;
+  TstTrasp.Value:=n;
 
-procedure TFmain.BvisMaccClick(Sender: TObject);
-begin
-  //visAlleg('M',fd.TmaccCod.Text,qDocMaccR.Value);
-end;
+  n:='';
+  case fd.TddtPorto.Value of
+    'f':n:='franco';
+    'a':n:='assegnato';
+  end;
+  TstPorto.Value:=n;
 
-procedure TFmain.BvisEffClick(Sender: TObject);
-begin
-end;
+  n:='';
+  s:='select descr from caus where cod='+qs(fd.TddtCaus.Text);
+  zgo(zq,s,'op');
+  if zq.RecordCount>0 then
+    n:=vts(zq['descr']);
+  TstCaus.Value:=n;
 
-procedure TFmain.cbSortMaccChange(Sender: TObject);
-begin
-end;
+  n:='';
+  if Enote.Lines.Count>0 then begin
+    for x:=0 to Enote.Lines.Count-1 do
+      n+=Enote.Lines[x]+' ';
+  end;
+  TstNote.Value:=n;
 
-procedure TFmain.dbgAllCellClick(Column: TColumn);
-begin
-end;
+  Tst.Post;
 
-procedure TFmain.dbgAllKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  mess('scrivere nel riquadro sottostante',_info,_icons);
-end;
+  Trst.Close;
+  Trst.Open;
 
-procedure TFmain.dbgAllMaccColExit(Sender: TObject);
-var
-  s:widestring;
-begin
-end;
+  fd.Trddt.First;
+  while not fd.Trddt.EOF do begin
+    Trst.Insert;
+    TrstCod.Value:=fd.TrddtCod.Value;
+    TrstUm.Value :=fd.TrddtUm.Value;
+    TrstQta.Value:=fd.TrddtQta.Value;
+    fd.Trddt.Next;
+  end;
 
-procedure TFmain.dbgLavEditingDone(Sender: TObject);
-begin
-end;
+  (*fd.Tddt.Filter:='cod='+fd.TddtCod.Text;
+  fd.Tddt.Filtered:=true;
+  fd.Trddt.Filter:='cod='+fd.TddtCod.Text;
+  fd.Trddt.Filtered:=true;*)
 
-procedure TFmain.dbgMaccCellClick(Column: TColumn);
-begin
-end;
+  //deb('ok');
 
-procedure TFmain.dbgManCellClick(Column: TColumn);
-begin
-  //fd.Tmanut.Locate('cod',TelCod.Value,[]);
-end;
-
-procedure TFmain.dbgManTitleClick(Column: TColumn);
-begin
-end;
-
-procedure TFmain.dbNavigatorEffClick(Sender: TObject; Button: TDBNavButtonType);
-begin
+  frDdt.ShowReport;
 end;
 
 procedure TFmain.dbNavClick(Sender: TObject; Button: TDBNavButtonType);
@@ -1246,30 +892,6 @@ begin
       end;
     end;
   end; //case
-end;
-
-procedure TFmain.EccEff_fltKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-end;
-
-procedure TFmain.EccMaccExit(Sender: TObject);
-begin
-end;
-
-procedure TFmain.EccMaccKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-end;
-
-procedure TFmain.EccResFltKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-end;
-
-procedure TFmain.Ecc_macc_fltKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
 end;
 
 procedure TFmain.EcodDestExit(Sender: TObject);
@@ -1622,32 +1244,6 @@ begin
     end;
 end;
 
-procedure TFmain.BcercaAllegMaccClick(Sender: TObject);
-var
-  s:widestring;
-  alleg_,macc_:string;
-begin
-  alleg_:=''; macc_:='';
-  repeat
-    if not inputQuery(_info,'descrizione allegato',alleg_) then
-      exit;
-  until trim(alleg_)<>'';
-  if not inputQuery(_info,'dato facoltativo: macchina/impianto',macc_) then
-    exit;
-  s:='select m.cod,m.des,d.descr'; //d.tipo,d.cod,d.r,d.descr,d.file as luogo,d.certif as riserv,d.d1 as finoal,d.cat as tipofile';
-  agg(s,'from docs d');
-  agg(s,'left join macch m on d.cod=m.cod');
-  agg(s,'where d.tipo=''M''');
-  agg(s,'and lower(d.descr) like ('+qs('%'+alleg_+'%')+')');
-  if trim(macc_)<>'' then
-    agg(s,'and lower(m.des) like ('+qs('%'+macc_+'%')+')');
-  agg(s,'order by m.des,d.descr');
-  elenca(s,1,'elenco',['macchina','allegato']);
-  //if not esc_ then
-    //if fd.Tmacc.Locate('cod',helpCod_,[]) then
-      //initFieldsMacc();
-end;
-
 procedure TFmain.BcercaDestClick(Sender: TObject);
 var
   cosa:string;
@@ -1686,34 +1282,6 @@ begin
   elenca(s,1,'elenco',['reg.','data','macchina','descrizione sintetica']);
   if not esc_ then
     fd.Tddt.Locate('cod',helpCod_,[]);
-end;
-
-procedure TFmain.BannAllegClick(Sender: TObject);
-begin
-  Talleg.Cancel;
-end;
-
-procedure TFmain.BgoManutClick(Sender: TObject);
-var
-  s:widestring;
-  mf,dmmf,dmf:string;
-begin
-  s:='select r.cod,data,r.macch,garanzia,notes,dessimp,scad,period,tipop,r.i2';
-  agg(s,'from rip r');
-  agg(s,'left join macch m on r.macch=m.cod');
-  agg(s,'where coalesce(garanzia,'''')='+qs('x')); //x=manutenzioni previste
-  if mf<>'' then
-    agg(s,'and lower(macch)='+qs(lowerCase(mf)));
-  if dmmf<>'' then
-    agg(s,'and lower(m.des) like '+qs('%'+lowerCase(dmmf)+'%'));
-  //if trim(Eprogr_pian_flt.Text)<>'' then agg(s,'and cod='+Eprogr_pian_flt.Text);
-  if dmf<>'' then begin
-    agg(s,'and (lower(dessimp) like '+qs('%'+lowerCase(dmf)+'%'));
-    agg(s,'or lower(notes) like '+qs('%'+lowerCase(dmf)+'%')+')');
-  end;
-  agg(s,'order by tipop asc,cod desc');
-  zgo(Tel,s,'op');
-  Tel.First;
 end;
 
 procedure TFmain.BmodClick(Sender: TObject);

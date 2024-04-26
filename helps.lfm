@@ -10,7 +10,7 @@ object Fel: TFel
   Constraints.MinHeight = 350
   Constraints.MinWidth = 520
   OnShow = FormShow
-  LCLVersion = '3.0.0.3'
+  LCLVersion = '3.2.0.0'
   object dbgH: TRxDBGrid
     Left = 3
     Height = 391

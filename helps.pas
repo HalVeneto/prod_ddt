@@ -271,19 +271,9 @@ begin
         end;
         w:=w+wdt+2;
       end;
-      //if length(titolo)>x then
-        //dbgH.Columns[x].Title.Caption:=titolo;
-      //end;
-      //else
-        //dbgH.Columns[x].Title.Caption:='';
-      //dbgH.Columns[x].Title.Font:=hf;
-      //dbgH.Columns[x].Font:=rf;
     end;
 
     try
-      //dbgH.AutoAdjustColumns; //disab. 09/12/23, non dimensiona correttamente, tronca
-      //dbgH.AutoSize:=true;
-      //Fel.Width:=w+100*2;
     finally
       (*try ...spesso dà list index out of bounds...
         for x:=0 to length(head) do  begin
