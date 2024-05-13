@@ -712,6 +712,27 @@ object fd: Tfd
       Required = False
       Precision = 8
     end
+    object Trddts1: TStringField
+      DisplayLabel = 'nr.rif.'
+      FieldKind = fkData
+      FieldName = 's1'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 255
+    end
+    object Trddtd1: TDateField
+      DisplayLabel = 'data rif.'
+      FieldKind = fkData
+      FieldName = 'd1'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object dsRddt: TDataSource
     AutoEdit = False
@@ -728,6 +749,7 @@ object fd: Tfd
   end
   object Tcaus: TZQuery
     Connection = ZConnection
+    Active = True
     SQL.Strings = (
       'select cod,descr from caus limit 1'
     )

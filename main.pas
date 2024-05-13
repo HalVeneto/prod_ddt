@@ -10,9 +10,10 @@ uses
   Classes, SysUtils, db, Forms, Controls, Graphics, Dialogs, DBCtrls, Buttons,
   StdCtrls, ComCtrls, BCPanel, BGRAResizeSpeedButton, BCListBox,
   BCMaterialDesignButton, BCButton, BCRadialProgressBar, RLPDFFilter, ZDataset,
-  rxdbdateedit, rxdbgrid, rxmemds, rxtooledit, RxVersInfo, LCLType, units, dm,
-  helps, DBGrids, DBExtCtrls, ExtCtrls, ShellAPI, LR_Class, LR_DBSet, LR_DSet,
-  LR_Desgn, LR_View, Types;
+  rxdbdateedit, rxdbgrid, rxmemds, rxtooledit, RxVersInfo, RxLazReport, LCLType,
+  units, dm, helps, DBGrids, DBExtCtrls, ExtCtrls, ShellAPI, LR_Class, LR_DBSet,
+  LR_DSet, LR_Desgn, LR_View, LR_DB_Zeos, Types,
+  DateUtils;
 
 type
 
@@ -26,7 +27,7 @@ type
     BcercaAllegMacc1: TBCButton;
     BcercaDest: TBCButton;
     BcercaDest1: TBCButton;
-    BcodMacc: TBCButton;
+    Bcod: TBCButton;
     BcodMacc1: TBCButton;
     BmodRiga: TSpeedButton;
     BnewRiga: TSpeedButton;
@@ -34,8 +35,13 @@ type
     dbNavRiga: TDBNavigator;
     dsRst: TDataSource;
     EcodDstnz: TDBEdit;
+    Ecomm1: TDBEdit;
+    EdataIni1: TRxDBDateEdit;
     frDsRst: TfrDBDataSet;
     frDdt: TfrReport;
+    gbRif: TGroupBox;
+    LnrRif: TLabel;
+    LdataRif: TLabel;
     rgTipoDestinat: TDBRadioGroup;
     dbtR: TDBText;
     dbtRiga: TDBText;
@@ -56,7 +62,7 @@ type
     Lum: TLabel;
     Lqta: TLabel;
     Mdes: TDBMemo;
-    Mdes1: TDBMemo;
+    Mnote: TDBMemo;
     pNavRiga: TBCPanel;
     pRighe: TBCPanel;
     BinfoMP1: TBCButton;
@@ -155,11 +161,19 @@ type
     Telcaus: TStringField;
     TelcCod: TLongintField;
     Trst: TRxMemoryData;
+    TrstArt: TStringField;
     Trstcod: TLongintField;
+    TrstComm: TStringField;
+    TrstDataRif: TStringField;
+    TrstDes: TMemoField;
+    TrstDis: TStringField;
     Trstqta: TFloatField;
+    Trsts1_rif: TStringField;
     Trstum: TStringField;
+    TstAsp: TStringField;
     Tstcaus: TStringField;
     TstCod: TLongintField;
+    TstColli: TLongintField;
     TstData: TDateField;
     Telcod: TLongintField;
     Telcod_1: TLongintField;
@@ -222,6 +236,7 @@ type
     Telvettnaz: TStringField;
     Timer: TTimer;
     Tst: TRxMemoryData;
+    TstDataIni: TDateField;
     TstdestDes: TStringField;
     TstdestInd: TStringField;
     TstdestLoc: TStringField;
@@ -235,11 +250,16 @@ type
     tsGest: TTabSheet;
     Tstporto: TStringField;
     Tsttrasp: TStringField;
+    TstVettDes: TStringField;
+    TstVettInd: TStringField;
+    TstVettLoc: TStringField;
     zq: TZQuery;
     Tel: TZQuery;
     procedure BcancClick(Sender: TObject);
     procedure BcancRigaClick(Sender: TObject);
+    procedure BcercaAllegMaccClick(Sender: TObject);
     procedure BcercaDestClick(Sender: TObject);
+    procedure BcodClick(Sender: TObject);
     procedure BdesManClick(Sender: TObject);
     procedure BmodClick(Sender: TObject);
     procedure BmodRigaClick(Sender: TObject);
@@ -270,6 +290,7 @@ type
       Shift: TShiftState);
     procedure PageControlChange(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
+    procedure TrstCalcFields(DataSet: TDataSet);
   private
 
   public
@@ -368,7 +389,7 @@ begin
 
     if fd.TddtCod.Text<>'' then begin
       fd.Trddt.Close;
-      s:='select serie,cod,r,riga,art,dis,comm,des,um,qta,note from rddt where cod='+fd.TddtCod.Text+' order by riga asc,r asc';
+      s:='select serie,cod,r,riga,art,dis,comm,des,um,qta,note,s1,d1 from rddt where cod='+fd.TddtCod.Text+' order by riga asc,r asc';
       fd.Trddt.SQL.Text:=s;
       fd.Trddt.Open;
     end;
@@ -479,9 +500,9 @@ var
   cod,q:longint;
   eraChiuso:boolean;
 begin
-  //deb('par:'+paramstr(1));
+  deb('par:'+paramstr(1));
   getDir(0,pLoc);
-  //showmessage('1:'+ploc);
+  showmessage('1:'+ploc);
   leggiParam();
   if not cercaParam('noctrlsessions') then begin
     {$i-}
@@ -546,7 +567,7 @@ begin
   end;
   fd.Trddt.Close;
   if fd.TddtCod.Text<>'' then begin
-    s:='select serie,cod,r,riga,art,dis,comm,des,um,qta,note from rddt where cod='+fd.TddtCod.Text+' order by riga asc';
+    s:='select serie,cod,r,riga,art,dis,comm,des,um,qta,note,s1,d1 from rddt where cod='+fd.TddtCod.Text+' order by riga asc';
     fd.Trddt.SQL.Text:=s;
   end;
   fd.Trddt.Open;
@@ -557,6 +578,7 @@ begin
   //apri(fd.Tmlav,fp.dsMlav,true,'lav');
   //apri(fd.Tmcomp,fp.dsMcomp,true,'cod');
   initFields();
+  deb('1');
 end;
 
 procedure TFmain.EnoteKeyDown(Sender: TObject; var Key: Word;
@@ -643,6 +665,10 @@ begin
   end;
 end;
 
+procedure TFmain.TrstCalcFields(DataSet: TDataSet);
+begin
+end;
+
 procedure carica();
 var
   s:widestring;
@@ -724,6 +750,13 @@ begin
   TstDstnzNaz.Value:=fd.TddtDstnzNaz.Value;
   TstData.Value:=fd.TddtData.Value;
 
+  TstAsp.Value:=fd.TddtAsp.Value;
+  TstColli.Value:=fd.TddtColli.Value;
+  TstVettDes.Value:=fd.TddtVettDes.Value;
+  TstVettInd.Value:=fd.TddtVettInd.Value;
+  TstVettLoc.Value:=fd.TddtVettLoc.Value;
+  TstDataIni.Value:=fd.TddtDataIni.Value;
+
   n:='';
   case fd.TddtTrasp.Value of
     'm':n:='mittente';
@@ -764,6 +797,23 @@ begin
     TrstCod.Value:=fd.TrddtCod.Value;
     TrstUm.Value :=fd.TrddtUm.Value;
     TrstQta.Value:=fd.TrddtQta.Value;
+    TrstDes.Value:=fd.TrddtDes.Value;
+    TrstArt.Value:=fd.TrddtArt.Value;
+    TrstDis.Value:=fd.TrddtDis.Value;
+    TrstComm.Value:=fd.TrddtComm.AsString;
+    TrstS1_rif.Value:=fd.TrddtS1.AsString;
+    //deb('db:'+fd.TrddtD1.AsString+'-');
+    if (fd.TrddtD1.IsNull) or (fd.TrddtD1.AsString='') or (fd.TrddtD1.AsString='30/12/99') then begin
+      TrstDataRif.Value:='';
+      //deb('no');
+      end
+    else
+      begin
+      TrstDataRif.Value:=formatDateTime('dd/mm/yy',fd.TrddtD1.Value);
+      //deb('sì');
+      end;
+    //deb('memo:'+TrstDataRif.AsString);
+    Trst.Post;
     fd.Trddt.Next;
   end;
 
@@ -774,6 +824,8 @@ begin
 
   //deb('ok');
 
+  frDdt.PrepareReport;
+  frDdt.LoadFromFile('ddt_land.lrf');
   frDdt.ShowReport;
 end;
 
@@ -1244,24 +1296,52 @@ begin
     end;
 end;
 
+procedure TFmain.BcercaAllegMaccClick(Sender: TObject);
+var
+  s:widestring;
+  des:string;
+begin
+  if not inputQuery(_info,'descrizione destinatario',des) then
+    exit;
+  des:=trim(des);
+  if des='' then
+    exit;
+  s:='select cod,cod,data,destdes,dstnzdes from tddt where lower(destdes) like '+qs('%'+des+'%');
+  elenca(s,1,'elenco d.d.t.',['progressivo','data','destinatario','destinazione']);
+  if not esc_ then
+    fd.Tddt.Locate('cod',helpCod_,[]);
+end;
+
 procedure TFmain.BcercaDestClick(Sender: TObject);
 var
-  cosa:string;
   s:widestring;
+  des:string;
 begin
-  if not inputQuery(_info,'descrizione macchina da cercare',cosa) then
+  if not inputQuery(_info,'descrizione destinatario',des) then
     exit;
-  if trim(cosa)='' then
+  des:=trim(des);
+  if des='' then
     exit;
-  s:='select cod,cod,des,cc';
-  agg(s,'from macch');
-  agg(s,'where cod<>'+qs('')); //x=man.previste
-  agg(s,'and lower(des) like '+qs('%'+lowerCase(cosa)+'%'));
-  agg(s,'order by des');
-  elenca(s,1,'macchine',['codice:80','descrizione:250','centro costo:70']);
-  //if not esc_ then
-    //if fd.Tmacc.Locate('cod',helpCod_,[]) then
-      //initFieldsMacc();
+  s:='select cod,cod,data,destdes,dstnzdes from tddt where lower(destdes) like '+qs('%'+des+'%');
+  elenca(s,1,'elenco d.d.t.',['progressivo','data','destinatario','destinazione']);
+  if not esc_ then
+    fd.Tddt.Locate('cod',helpCod_,[]);
+end;
+
+procedure TFmain.BcodClick(Sender: TObject);
+var
+  s:widestring;
+  cod:string;
+begin
+  if not inputQuery(_info,'progressivo',cod) then
+    exit;
+  cod:=trim(cod);
+  if cod='' then
+    exit;
+  s:='select cod,cod,data,destdes,dstnzdes from tddt where cast(cod as character varying) like '+qs('%'+cod+'%');
+  elenca(s,1,'elenco d.d.t.',['progressivo','data','destinatario','destinazione']);
+  if not esc_ then
+    fd.Tddt.Locate('cod',helpCod_,[]);
 end;
 
 procedure TFmain.BdesManClick(Sender: TObject);

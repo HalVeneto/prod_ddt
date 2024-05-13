@@ -113,12 +113,14 @@ type
     Trddtart: TStringField;
     Trddtcod: TLongintField;
     Trddtcomm: TLongintField;
+    Trddtd1: TDateField;
     Trddtdes: TMemoField;
     Trddtdis: TStringField;
     Trddtnote: TMemoField;
     Trddtqta: TFloatField;
     Trddtr: TLongintField;
     Trddtriga: TLongintField;
+    Trddts1: TStringField;
     Trddtserie: TStringField;
     Trddtum: TStringField;
     ZConnection: TZConnection;

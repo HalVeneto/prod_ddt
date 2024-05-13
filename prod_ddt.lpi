@@ -14,6 +14,7 @@
       <UseXPManifest Value="True"/>
       <XPManifest>
         <DpiAware Value="True"/>
+        <ExecutionLevel Value="highestAvailable"/>
       </XPManifest>
       <Icon Value="0"/>
     </General>
